@@ -1,0 +1,6 @@
+build/
+password-cracker
+shadow.txt
+machinefile
+*.out
+.DS_Store
