@@ -15,7 +15,7 @@ A C++ hybrid parallel search implementation. The program divides a brute-force s
 - Propagates a successful result to the coordinator and stops other workers early.
 - Uses MPI messaging, non-blocking receives, process discovery, and shared-memory threading.
 
-See [Parallel architecture](docs/ARCHITECTURE.md) for the execution model and project limitations. The original technical specification is available in [Project Statement.pdf](Project%20Statement.pdf).
+See [Parallel architecture](docs/ARCHITECTURE.md) for the execution model and project limitations. The original technical specification is available in [docs/system-specification.pdf](docs/system-specification.pdf).
 
 ## Build
 
