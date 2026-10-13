@@ -1,61 +1,72 @@
-<h1 align="center">Distributed Password Cracker Using MPI and OpenMP</h1>
+# Distributed Password Cracker with MPI and OpenMP
 
-### Description
-Password Cracker program coded in `C++ Language` by applying `Brute Force Algorithm` and `Parallelizing` it using MPI and OpenMP. You can look at detailed description [Here](https://github.com/SameetAsadullah/Distributed-Password-Cracker-Using-MPI-and-OpenMP/blob/main/Project%20Statement.pdf).
+An educational C++ demonstration of hybrid parallel computing. The program divides a brute-force search across MPI processes and uses OpenMP threads within each process to coordinate searching and early termination.
 
-### Manual
-1) Copy the content of `/etc/shadow` into a file `shadow.txt` and place it into your current working directory:
-    ```
-    sudo cat /etc/shadow > shadow.txt
-    ```
-    
-2) Use following command to `Compile the Code`:
-    ```
-    mpic++ -fopenmp main.cpp -lcrypt -o main
-    ```
+![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)
+![MPI](https://img.shields.io/badge/parallelism-MPI%20%2B%20OpenMP-2563EB)
+![Build](https://github.com/SameetAsadullah/Distributed-Password-Cracker-Using-MPI-and-OpenMP/actions/workflows/build.yml/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-3) Create a file named as `machinefile` in your current working directory:
-    ```
-    touch machinefile
-    ```
+## Technical highlights
 
-4) The `machinefile` should have the hostname of your pc and the number of processes you want to run on it in parallel i.e, sameet is the hostname of my pc and I want to run 5 processes in parallel. So, its format should be like:
-    ```
-    sameet:5
-    ```
+- Partitions the lowercase candidate space among distributed MPI workers.
+- Uses OpenMP to run the search and cancellation listener concurrently.
+- Extracts SHA-512 `crypt` salts from shadow-format test records.
+- Propagates a successful result to the coordinator and stops other workers early.
+- Demonstrates MPI messaging, non-blocking receives, process discovery, and shared-memory threading.
 
-5) Use following commands to `Execute the Code`. Here 5 represents total number of processes to create:
-    ```
-    mpiexec -n 5 -f machinefile ./main
-    ```
-    
-### Working Screenshots
-<div align="center">
-  <img src = "https://github.com/SameetAsadullah/Distributed-Password-Cracker-Using-MPI-and-OpenMP/blob/main/extras/working-ss-1.PNG" alt = "" width="700px"/>
-</div>
-<br/>
-<div align="center">
-  <img src = "https://github.com/SameetAsadullah/Distributed-Password-Cracker-Using-MPI-and-OpenMP/blob/main/extras/working-ss-2.PNG" alt = "" width="700px"/>
-</div>
-<br/>
-<div align="center">
-  <img src = "https://github.com/SameetAsadullah/Distributed-Password-Cracker-Using-MPI-and-OpenMP/blob/main/extras/working-ss-3.PNG" alt = "" width="700px"/>
-</div>
+See [Parallel architecture](docs/ARCHITECTURE.md) for the execution model and project limitations. The original assignment is retained in [Project Statement.pdf](Project%20Statement.pdf).
 
-### Side Notes
-- The `/etc/shadow` file stores all the users of the pc and their respective passwords in encryped form.
-- The encryption of their passwords are done using `SHA-512 Algorithm` in Ubuntu Linux.
-- We can encrypt any string using the `crypt()` function from `crypt.h Library`. It returns us Salt and Encyrpted Password both in a single appended string. It requires two arguments:
-    - The string to encrypt.
-    - The salt used to encrypt the string.
-- We can extract the salt used to encrypt the password from `shadow` file and then use it to encrypt all the strings obtained from brute force and compare with the password.
-- In `shadow` file, the username, salt, and password are stored in the following format:
-    - `Username` before first `:`
-    - Then `Salt` until three `$` signs
-    - And `Encrypted Password` after that
+## Build
 
-### Contributors
-- [Sameet Asadullah](https://github.com/SameetAsadullah) 
+### Requirements
+
+- Linux
+- A C++17 compiler
+- Open MPI
+- OpenMP
+- `libcrypt` development headers
+
+On Ubuntu or Debian:
+
+```bash
+sudo apt-get install openmpi-bin libopenmpi-dev libcrypt-dev
+make
+```
+
+The executable is created at `build/password-cracker`.
+
+## Run in a controlled lab
+
+Create a `shadow.txt` containing only an account/hash record you own and are authorized to test. Do not commit that file; it is ignored by Git.
+
+For a local multi-process demonstration:
+
+```bash
+mpiexec -n 5 ./build/password-cracker
+```
+
+For multiple hosts, provide an Open MPI hostfile according to your cluster configuration.
+
+## Screenshots
+
+| Distributed execution | Password discovery |
+| --- | --- |
+| ![MPI workers running](extras/working-ss-1.PNG) | ![Password found](extras/working-ss-2.PNG) |
+
+![Workers stopping after a successful result](extras/working-ss-3.PNG)
+
+## Responsible use
+
+This repository is a university parallel-computing project. Use it only with hashes and systems you own or have explicit permission to assess. It is not designed for unauthorized access or production password recovery.
+
+## Contributors
+
+- [Sameet Asadullah](https://github.com/SameetAsadullah)
 - [Tayyab Ali](https://github.com/DarkDragz)
 - [Tayyab Abbas](https://github.com/tayyababbas2000)
 - [Aysha Noor](https://github.com/ayshanoorr)
+
+## License
+
+Licensed under the [MIT License](LICENSE).
