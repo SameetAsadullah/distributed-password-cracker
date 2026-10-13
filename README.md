@@ -4,7 +4,7 @@ An educational C++ demonstration of hybrid parallel computing. The program divid
 
 ![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)
 ![MPI](https://img.shields.io/badge/parallelism-MPI%20%2B%20OpenMP-2563EB)
-![Build](https://github.com/SameetAsadullah/Distributed-Password-Cracker-Using-MPI-and-OpenMP/actions/workflows/build.yml/badge.svg)
+![Build](https://github.com/SameetAsadullah/distributed-password-cracker/actions/workflows/build.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## Technical highlights
