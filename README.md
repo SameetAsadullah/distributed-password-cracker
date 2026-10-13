@@ -15,7 +15,7 @@ A C++ hybrid parallel search implementation. The program divides a brute-force s
 - Propagates a successful result to the coordinator and stops other workers early.
 - Uses MPI messaging, non-blocking receives, process discovery, and shared-memory threading.
 
-See [Parallel architecture](docs/ARCHITECTURE.md) for the execution model and project limitations. The original assignment is retained in [Project Statement.pdf](Project%20Statement.pdf).
+See [Parallel architecture](docs/ARCHITECTURE.md) for the execution model and project limitations. The original technical specification is available in [Project Statement.pdf](Project%20Statement.pdf).
 
 ## Build
 
@@ -58,7 +58,7 @@ For multiple hosts, provide an Open MPI hostfile according to your cluster confi
 
 ## Responsible use
 
-This repository is a university parallel-computing project. Use it only with hashes and systems you own or have explicit permission to assess. It is not designed for unauthorized access or production password recovery.
+Use this implementation only with hashes and systems you own or have explicit permission to assess. It is intended for controlled parallel-computing experiments, not unauthorized access or production password recovery.
 
 ## Contributors
 
