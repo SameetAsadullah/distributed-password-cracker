@@ -1,6 +1,6 @@
 # Distributed Password Cracker with MPI and OpenMP
 
-An educational C++ demonstration of hybrid parallel computing. The program divides a brute-force search across MPI processes and uses OpenMP threads within each process to coordinate searching and early termination.
+A C++ hybrid parallel search implementation. The program divides a brute-force search across MPI processes and uses OpenMP threads within each process to coordinate searching and early termination.
 
 ![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)
 ![MPI](https://img.shields.io/badge/parallelism-MPI%20%2B%20OpenMP-2563EB)
@@ -13,7 +13,7 @@ An educational C++ demonstration of hybrid parallel computing. The program divid
 - Uses OpenMP to run the search and cancellation listener concurrently.
 - Extracts SHA-512 `crypt` salts from shadow-format test records.
 - Propagates a successful result to the coordinator and stops other workers early.
-- Demonstrates MPI messaging, non-blocking receives, process discovery, and shared-memory threading.
+- Uses MPI messaging, non-blocking receives, process discovery, and shared-memory threading.
 
 See [Parallel architecture](docs/ARCHITECTURE.md) for the execution model and project limitations. The original assignment is retained in [Project Statement.pdf](Project%20Statement.pdf).
 
@@ -36,11 +36,11 @@ make
 
 The executable is created at `build/password-cracker`.
 
-## Run in a controlled lab
+## Run in a controlled environment
 
 Create a `shadow.txt` containing only an account/hash record you own and are authorized to test. Do not commit that file; it is ignored by Git.
 
-For a local multi-process demonstration:
+For local multi-process execution:
 
 ```bash
 mpiexec -n 5 ./build/password-cracker

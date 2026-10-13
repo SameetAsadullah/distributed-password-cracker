@@ -15,4 +15,4 @@ This hybrid approach demonstrates how MPI can distribute work between machines w
 - Candidate passwords contain lowercase ASCII letters and are limited to eight characters.
 - The implementation targets SHA-512 `crypt` hashes in the traditional shadow-file format.
 - Work distribution is based on the first candidate character.
-- The project is an educational brute-force demonstration rather than a general-purpose auditing tool.
+- The implementation is scoped to its defined brute-force search model rather than general-purpose password auditing.
